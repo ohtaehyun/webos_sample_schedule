@@ -1,0 +1,69 @@
+    <script src="webOSjs-0.1.0/webOS.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        //sample code for calling LS2 API
+        var lunaReq= webOS.service.request("luna://com.webos.service.systemservice",
+        {
+            method:"clock/getTime",
+            parameters:{},
+            onSuccess: function (args) {
+                webOS.info("GETTIME_SUCCESS", {"APP_NAME": "example web app"}, "UTC : " + args.utc);
+            },
+            onFailure: function (args) {
+                webOS.error("GETTIME_FAILED", {"APP_NAME": "example web app"}, "errorText : " + args.errorText);
+            }
+        });
+    </script>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div class="clock-container">
+          <h1 class="clock"></h1>
+        </div>
+        <div class="calendar-container">
+          <div class="calendar-nav">
+            <button class="dec-button"><</button>
+            <button class="inc-button">></button>
+            <h1 class="date-text"></h1>
+            <button class="month-button">M</button>
+            <button class="week-button">W</button>
+          </div>
+          <table class="calendar">
+            <colgroup class="col-group">
+              <col />
+              <col />
+              <col />
+              <col />
+              <col />
+              <col />
+              <col />
+            </colgroup>
+            <thead class="calendar-head">
+              <tr>
+                <td class="text-white">Sun</td>
+                <td class="text-white">Mon</td>
+                <td class="text-white">Tue</td>
+                <td class="text-white">Wed</td>
+                <td class="text-white">Thu</td>
+                <td class="text-white">Fri</td>
+                <td class="text-white">Sat</td>
+              </tr>
+            </thead>
+            <tbody class="calendar-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="./js/index.js"></script>
+    <script src="./js/clock.js"></script>
+  </body>
+</html>

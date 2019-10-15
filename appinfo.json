@@ -1,0 +1,15 @@
+{
+  "id": "com.schedule.app",
+  "version": "0.0.1",
+  "vendor": "My Company",
+  "type": "web",
+  "main": "index.html",
+  "title": "schedule",
+  "icon": "icon.png",
+  "largeIcon": "largeIcon.png",
+  "requiredPermissions": [
+    "time",
+    "settings.read",
+    "activities.manage"
+  ]
+}
