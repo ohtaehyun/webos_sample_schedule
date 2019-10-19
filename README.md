@@ -3,7 +3,7 @@ This is webos_sample_schedule. Add schedule to calendar for test db8.
 
 
 # Set up test environment
-webos_sample_schedule tested on virtualbox emulator on linux ubuntu. 
+webos_sample_schedule tested using virtualbox emulator on linux ubuntu. 
 
   1. check your system
   > &nbsp;&nbsp;Ubuntu 16.04 LTS (Xenial Xerus) 64-bit  
