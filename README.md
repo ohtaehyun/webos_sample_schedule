@@ -10,7 +10,7 @@ webos_sample_schedule tested on virtualbox emulator on linux ubuntu.
   > &nbsp;&nbsp;Ubuntu 18.04 LTS (Bionic Beaver) 64-bit (Recommended)  
   
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;check for detail on webosose document  
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(https://www.webosose.org/docs/guides/setup/system-requirements/#build-system-requirements)
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://www.webosose.org/docs/guides/setup/system-requirements/#build-system-requirements
     
   2. build webos-image
     build webos-image follow by webosose document.
@@ -43,6 +43,35 @@ After set up environment test webos_sample_schedule
       ares-install -d <your_device_name> -a com.schedule.app_0.0.1_all.ipk
       ares-launch -d <your_device_name> -a com.schedule.app
   ```
-  6. Check your emulator
   
+  6. Check your emulator
+  ![screen](/img/calander.png)  
+  
+  If you see this screen then success.  
+  click + button and add your scedule.
+  
+# More
+
+  1. DB8  
+    - if you are tring to find more infomations about db8 reference then check [this](https://www.webosose.org/docs/reference/ls2-api/com-webos-service-db/)  
+    - If you are tring to make your own code with db8, Don't forget to add permission to appinfo.json  
+    ```
+    {
+      "requiredPermissions": [
+        "all",
+        "database.internal",
+        "database"
+      ]
+    }
+    ```  
+   
+ 2. check permission
+    1. open console
     
+    2. connect your device  
+      ``` ssh -d <your_device_port> root@localhost```
+      
+    3. check permission (example db8)  
+      ```ls-monitor -i com.webos.service.db```
+ 
+ 
