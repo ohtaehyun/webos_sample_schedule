@@ -54,7 +54,7 @@ After set up environment test webos_sample_schedule
 
   1. DB8  
     - if you are tring to find more infomations about db8 reference then check [this](https://www.webosose.org/docs/reference/ls2-api/com-webos-service-db/)  
-    - If you are tring to make your own code with db8, Don't forget to add permission to appinfo.json  
+    - If you are tring to make your own code with db8, Don't forget to add permission at appinfo.json  
     ```
     {
       "requiredPermissions": [
