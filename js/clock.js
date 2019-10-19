@@ -12,10 +12,3 @@ function getDate() {
     .concat(minute < 10 ? "0".concat(minute) : "".concat(minute), ":")
     .concat(second < 10 ? "0".concat(second) : "".concat(second));
 }
-
-function init() {
-  getDate();
-  setInterval(getDate, 1000);
-}
-
-init();

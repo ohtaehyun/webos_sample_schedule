@@ -10,6 +10,9 @@
   "requiredPermissions": [
     "time",
     "settings.read",
-    "activities.manage"
+    "activities.manage",
+    "all",
+    "database.internal",
+    "database"
   ]
 }

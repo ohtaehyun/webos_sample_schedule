@@ -5,6 +5,8 @@ const incButton = document.querySelector(".inc-button");
 const dateText = document.querySelector(".date-text");
 const monthButton = document.querySelector(".month-button");
 const weekButton = document.querySelector(".week-button");
+const addScheduleButton = document.querySelector(".add-schedule-button");
+const delScheduleButton = document.querySelector(".del-schedule-button");
 
 const dayList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -150,7 +152,7 @@ function drawWeekcalendar() {
     }
     calendarCells[index].appendChild(p);
 
-    calendarCells[index].addEventListener("click", cellClicked);
+    // calendarCells[index].addEventListener("click", cellClicked);
     startWeek++;
   }
 }
@@ -186,7 +188,7 @@ function drawMonthcalendar() {
         "id",
         dayInfo["year"] + "-" + (month + 1) + "-" + (index - monthStart + 1)
       );
-      calendarCells[index].addEventListener("click", cellClicked);
+      // calendarCells[index].addEventListener("click", cellClicked);
     }
   }
 }
@@ -366,13 +368,147 @@ function cellClicked(event) {
 
   input.focus();
 }
+
+function addScheduleButtonClicked(event) {
+  modalFrame = document.createElement("div");
+  modalFrame.classList.add("modalFrame");
+
+  modal = document.createElement("div");
+  modal.classList.add("modal");
+
+  title = document.createElement("h1");
+  title.textContent = "일정 추가하기";
+
+  startDateLabel = document.createElement("label");
+  startDateLabel.setAttribute("for", "startDate");
+  startDateLabel.textContent = "시작일";
+
+  startDate = document.createElement("input");
+  startDate.setAttribute("type", "date");
+  startDate.setAttribute("id", "startDate");
+  startDate.classList.add("start-date");
+
+  endDate = document.createElement("input");
+  endDate.setAttribute("type", "date");
+  endDate.setAttribute("id", "endDate");
+
+  endDateLabel = document.createElement("label");
+  endDateLabel.setAttribute("for", "endDate");
+  endDateLabel.textContent = "종료일";
+  endDate.classList.add("end-date");
+
+  scheduleTitle = document.createElement("input");
+  scheduleTitle.setAttribute("id", "scheduleTitle");
+  scheduleTitle.setAttribute("placeHolder", "제목을 입력하세요");
+  scheduleTitle.classList.add("schedule-title");
+
+  saveButton = document.createElement("button");
+  saveButton.textContent = "save";
+  saveButton.classList.add("save-button");
+  saveButton.setAttribute("type", "submit");
+  saveButton.addEventListener("click", saveButtonClicked);
+
+  cancleButton = document.createElement("button");
+  cancleButton.textContent = "X";
+  cancleButton.classList.add("cancle-button");
+  cancleButton.addEventListener("click", cancleButtonCLicked);
+
+  colorPickerLabel = document.createElement("label");
+  colorPickerLabel.setAttribute("for", "color-picker");
+  colorPickerLabel.textContent = "배경";
+
+  colorPicker = document.createElement("select");
+  colorPicker.classList.add("color-picker")
+  colorPicker.innerHTML = `
+  <option value="#f6e58d" class="bee-keeper" >Bee Keeper</option>
+  <option value="#ff7979" class="pink-glamour">Pink Glamour</option>
+  <option value="#badc58" class="june-bud">June Bud</option>
+  <option value="#dff9fb" class="coastal-breeze">Coastal Breeze</option>
+ `
+
+  calendarContainer.append(modalFrame);
+  modalFrame.append(modal);
+  modal.append(title);
+  modal.append(scheduleTitle);
+  modal.append(startDateLabel);
+  modal.append(startDate);
+  modal.append(endDateLabel);
+  modal.append(endDate);
+  modal.append(colorPickerLabel);
+  modal.append(colorPicker);
+  modal.append(saveButton);
+  modal.append(cancleButton);
+}
+
+function saveButtonClicked() {
+  const scheduleTitleText = document.querySelector(".schedule-title").value;
+  const startDateText = document.querySelector(".start-date").value;
+  const startDate = new Date(startDateText);
+  const endDateText = document.querySelector(".end-date").value;
+  const endDate = new Date(endDateText);
+  const colorPicker = document.querySelector(".color-picker");
+  const backgroundColor = colorPicker.options[colorPicker.selectedIndex].value
+  if (scheduleTitleText != "" && startDateText != "" && endDateText != "") {
+    if (startDate - endDate > 0) {
+      return alert("종료일이 시작일보다 빠를 수 없습니다.");
+    }
+    data = {
+      title: scheduleTitleText,
+      startDate: startDateText,
+      endDate: endDateText,
+      backgroundColor
+    };
+		document.querySelector('.result2').innerHTML = backgroundColor;
+    onPut(data)
+    onFind()
+    cancleButtonCLicked();
+  }
+  else {
+    alert("항목을 모두 입력하십쇼");
+  }
+}
+
+function cancleButtonCLicked() {
+  calendarContainer.removeChild(calendarContainer.lastChild);
+}
+
+
+function deleteButtonClicked(event) {
+}
+
+function drawSchedules() {
+  const uls = document.querySelectorAll("td ul");
+  for (let index = 0; index < uls.length; index++) {
+    uls[index].innerHTML = "";
+  }
+  for (let index = 0; index < schedules.length; index++) {
+    const startDay = new Date(schedules[index].startDate);
+    const endDay = new Date(schedules[index].endDate);
+    for (let day = startDay; day <= endDay; day.setDate(day.getDate() + 1)) {
+      const id =
+        day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate();
+      li = document.createElement("li");
+      li.classList.add("schedule");
+      li.style.backgroundColor = schedules[index].backgroundColor;
+      li.textContent = schedules[index].title;
+      td = document.getElementById(id);
+      if (td) td.querySelector("ul").appendChild(li);
+    }
+  }
+}
 // @@@@@@@@@@@@@@@@@@@@@@@@@ FUNCTION FOR LISTENER END @@@@@@@@@@@@@@@@@@@@@@@@@@
 
 function init() {
+  getDate();
+  setInterval(getDate, 1000);
   initDayInfo();
   initMonthcalendar();
   monthButton.addEventListener("click", initMonthcalendar);
   weekButton.addEventListener("click", initWeekcalendar);
+  addScheduleButton.addEventListener("click",addScheduleButtonClicked);
+  delScheduleButton.addEventListener("click",deleteButtonClicked);
+  onPutKind();
+  onFind();
 }
 
 init();
