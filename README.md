@@ -47,8 +47,8 @@ After set up environment test webos_sample_schedule
   6. Check your emulator
   ![screen](/img/calander.png)  
   
-  If you see this screen then success.  
-  click + button and add your scedule.
+   &nbsp;   If you see this screen then success.  
+   &nbsp;   click + button and add your scedule.
   
 # More
 
