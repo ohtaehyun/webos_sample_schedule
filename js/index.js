@@ -152,7 +152,6 @@ function drawWeekcalendar() {
     }
     calendarCells[index].appendChild(p);
 
-    // calendarCells[index].addEventListener("click", cellClicked);
     startWeek++;
   }
 }
@@ -170,7 +169,6 @@ function drawMonthcalendar() {
   for (let index = 0; index < calendarCells.length; index++) {
     const p = document.createElement("p");
     calendarCells[index].innerHTML = "";
-    calendarCells[index].removeEventListener("click", cellClicked);
     if (index < monthStart) {
       p.classList.add("text-gray");
       p.textContent = lastMonthDays - (monthStart - index) + 1;
@@ -188,7 +186,6 @@ function drawMonthcalendar() {
         "id",
         dayInfo["year"] + "-" + (month + 1) + "-" + (index - monthStart + 1)
       );
-      // calendarCells[index].addEventListener("click", cellClicked);
     }
   }
 }
@@ -330,42 +327,6 @@ function addButtonClicked() {
   const modalList = document.querySelector(".modal-list");
   const input = document.createElement("input");
   modalList.append(input);
-  input.focus();
-}
-
-function cellClicked(event) {
-  modalFrame = document.createElement("div");
-  modalFrame.classList.add("modalFrame");
-
-  modal = document.createElement("div");
-  modal.classList.add("modal");
-
-  title = document.createElement("h1");
-  title.textContent = this.getAttribute("id");
-
-  list = document.createElement("div");
-  list.classList.add("modal-list");
-
-  input = document.createElement("input");
-
-  addButton = document.createElement("button");
-  addButton.textContent = "add";
-  addButton.classList.add("add-button");
-  addButton.addEventListener("click", addButtonClicked);
-
-  saveButton = document.createElement("button");
-  saveButton.textContent = "save";
-  saveButton.classList.add("save-button");
-  saveButton.addEventListener("click", saveButtonClicked);
-
-  calendarContainer.append(modalFrame);
-  modalFrame.append(modal);
-  list.append(input);
-  modal.append(title);
-  modal.append(list);
-  modal.append(addButton);
-  modal.append(saveButton);
-
   input.focus();
 }
 
