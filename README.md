@@ -1,5 +1,5 @@
 # webos_sample_schedule
-This is webos_sample_schedule. Add schedule to calander for test db8.
+This is webos_sample_schedule. Add schedule to calendar for test db8.
 
 
 # Set up test environment
@@ -12,16 +12,16 @@ webos_sample_schedule tested on virtualbox emulator on linux ubuntu.
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;check for detail on webosose document  
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://www.webosose.org/docs/guides/setup/system-requirements/#build-system-requirements
     
-  2. build webos-image
-    build webos-image follow by webosose document.
+  2. build webos-image  
+    build webos-image follow by webosose document.  
     https://www.webosose.org/docs/guides/setup/building-webos-ose/
     
-  3. install virtual box
-    install virtual box and set up your emulator.
+  3. install virtual box  
+    install virtual box and set up your emulator.  
     https://www.webosose.org/docs/tools/sdk/emulator/emulator-user-guide/
   
-  4. install webos cli
-    install cli
+  4. install webos cli  
+    install cli  
     https://www.webosose.org/docs/tools/sdk/cli/cli-user-guide/#installing-cli
     
 # Test
